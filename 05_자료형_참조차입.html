@@ -30,6 +30,11 @@
             - 객체나 배열을 변수에 담으면, 변수에는 실제 데이터가 아니라 데이터가 있는 곳의 주소가 들어감
             - 다른 변수에 할당하면 같은 데이터를 가리키게 되고, 한쪽에서 값을 수정하면 다른 쪽에서도 변경된 결과가 보임
 
+            스택 vs 힙
+            스택(stack)
+                - 프로그램 실행 중 함수 호출과 지역 변수, 매개변수 같은 임시 데이터가 저장되는 메모리 공간
+                - 코드가 실행되는 순서대로 쌓였다가 함수가 종료되면 자동으로 제거되는 후입선출 구조를 가지며, 관리가 단순하고 접근 속도가 빠르다는 장점이 있음
+
         */
     </script>
 </head>
@@ -51,6 +56,12 @@
         }
         console.log("greet 함수: ", greet)
         console.log("greet 함수 타입: ", typeof greet)
+
+        // 참조 타입의 특징
+        const copyUser = user
+        copyUser.age = 25
+        console.log("원본 user: ", user)
+        console.log("복사본 copyUser: ", copyUser)
 
     </script>
     
