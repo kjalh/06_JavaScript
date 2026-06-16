@@ -16,8 +16,48 @@
 
             3. 비교 연산자
                 ==, !=, >, <, >=, <=
-                ===
-                !==
+                
+                == : 값만 비교
+                === : 값 + 타입까지 비교  <- 이거 많이 씀
+                
+                != : 값만 비교
+                !== : 값 + 타입 비교  (값 또는 타입) <- 헷갈려서 잘 안 쓰게 됨
+
+                ex)  
+                10 == "10" -> true
+                10 === "10" -> false 
+                
+                
+                10 != "10" -> false
+                10 !== "10" -> true, 쉽게 생각하면 !(a===b)
+
+            4. 논리 연산자
+                && : AND
+                || : OR
+                ! : NOT
+
+            5. 증감 연산자
+                ++ : 값을 1증가
+                -- : 값을 1감소
+
+            6. 문자열 연산자
+                + : 문자열을 연결할 때 사용
+
+            7. 조건(삼항) 연산자
+                조건에 따라 다른 값을 선택
+                조건 ? 값1 : 값2
+
+            8. 타입 관련 연산자
+                typeof : 변수의 타입을 반환
+                instanceof : 변수가 특정 객체의 타입인지 확인
+            
+            9. 기타 연산자
+                , : 여러 표현식 나열
+                ?. : 옵셔널 체이닝(null인지 아닌지 체크)
+                ?? : null 병합 연산자(null일 경우 특정값을 반환)
+
+
+
 
 
 
@@ -27,6 +67,55 @@
 
 </head>
 <body>
+    <script>
+        // 비교 연산자
+        console.log(5 == "5")
+        console.log(5 === "5")
+
+        // 증감 연산자
+        let count = 1
+        count++
+        console.log(count)  // 2
+
+        count--
+        console.log(count)  // 1
+
+        let result = ++count // count 증가하고 result에 저장 전치
+        console.log(result) // 2
+        console.log(count)  // 2
+
+        result = count++    // result에 저장하고 count 증가 후치
+        console.log(result) // 2
+        console.log(count)  // 3
+
+        // 조건(삼항) 연산자
+        let score = 85
+        result = score >= 60 ? "합격" : "불합격"
+        console.log(result)
+
+
+        // 타입 관련 연산자
+        let num = 10
+        let arr = []
+        console.log(typeof num) // number
+        console.log(arr instanceof Array)   // true
+
+        // 기타 연산자
+        let x = (1, 2, 3, 10)
+        console.log(x) // 10이 출력됨
+        let user = null
+        //console.log(user.name) // 에러뜸
+        console.log(user?.name) // undefined
+
+        let value = null
+        let resultValue = value + "기본값" // null기본값
+        //let resultValue = value ?? "기본값" // 기본값
+
+        console.log(resultValue)
+
+
+
+    </script>
     
 </body>
 </html>
