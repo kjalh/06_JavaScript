@@ -94,19 +94,18 @@
         const month = 6
 
         switch(month){
-            case 1:
-            case 3:
-            case 5:
-            case 7:
+            case 1: case 3: case 5: case 7:
             case 8:
             case 10:
             case 12:
-                console.log("마지막 일자는 31입니다.")
+                console.log(`${month}월의 마지막 일자는 31입니다.`)
                 break
             case 2:
                 console.log("2월의 마지막 일자는 28 또는 29 입니다.")
                 break
-                
+            case 4: case 6: case 9: case 11:
+                console.log(`${month}월의 마지막 일자는 30입니다.`)
+                break
 
             
         }
