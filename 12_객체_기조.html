@@ -197,6 +197,25 @@
         console.log(first)
         console.log(second)
         console.log(rest)
+
+        const user = {
+            name: "김사과",
+            age: 20,
+            city: "서울"
+        }
+        const {name, ...rest2} = user
+        console.log(name)
+        console.log(rest2)
+
+        function display ({name, age, address, job}){
+            console.log(name, age, address, job)
+        }
+        const apple = {name: "김사과", age: 20, address: {si: "서울시", gu: "서초구", dong: "양재동"}}
+        console.log(apple)
+
+        const new_apple = {...apple, job: '프로그래머'}
+        console.log(new_apple)
+        display(new_apple)
     </script>
 </body>
 </html>
