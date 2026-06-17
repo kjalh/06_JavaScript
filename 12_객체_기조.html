@@ -67,6 +67,21 @@
             2) 깊은 복사
             객체 내부의 모든 중첩된 값들까지 복사는 방법. 즉, 완전히 새로운 객체를 만드는 것
 
+            스프레드 문법
+            - 점 3개를 사용해서 배열이나 객체의 값을 펼쳐서 복사하거나 전달할 수 있는 문법
+            - 배열이나 객체 안이 요소들을 하나하나 꺼내서 다른 배열, 객체, 함수 등으로 옮겨줄 수 있음
+                const fruits = ['사과', '바나나']
+                const newFruits = [...fruits, "포도"]
+                console.log(newFruits) // ['사과', '바나나', '포도']
+
+                const arr1 = [1, 2, 3]
+                const arr2 = [...arr1] // 새 배열 생성
+
+                const a = [1, 2]
+                const b = [3, 4]
+
+                const result = [...a, ...b] // [1, 2, 3, 4]
+
         */
     </script>
 </head>
@@ -150,11 +165,38 @@
         console.log(obj3)
         console.log(obj1)
 
+
+        // 얕은 복사
+        // address는 객체이기 때문에, obj4와 obj5가 같은 주소를 공유
         const obj4 = { name: "김사과", address: { city: "서울"} }
         const obj5 = { ...obj4}
         obj5.address.city = "부산"
-        
+        console.log(obj5)
+        console.log(obj4)
+    </script>
 
+    <hr>
+
+    <h1>스프레드 문법</h1>
+    
+    <script>
+        function add(x, y, z){
+            return x + y + z
+        }
+
+        const nums = [1, 2, 3]
+        console.log(add(...nums))
+
+        const a = {name: "김사과"}
+        const b = {age: 20}
+        const merged = {...a, ...b}
+        console.log(merged)
+
+        const numbers = [1, 2, 3, 4, 5]
+        const [first, second, ...rest] = numbers
+        console.log(first)
+        console.log(second)
+        console.log(rest)
     </script>
 </body>
 </html>
