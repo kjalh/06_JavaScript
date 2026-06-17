@@ -31,6 +31,9 @@
             - 클래스 레벨 속성, 비공개 속성 정의에 유리함
 
             get/set
+            - get과 set은 같은 이름을 공유해야 함
+            - 내부에서 값을 저장할 땐 보통 _name 처럼 언더스코어를 붙여서 구분
+            - get만 정의하면 읽기 전용 속성이 됨
         */
     </script>
 </head>
@@ -104,8 +107,38 @@
 
 
         
-        p = new Product
-        p.showInfo()
+        // p = new Product
+        // p.showInfo()
+    </script>
+
+    <hr>
+
+    <h1>get / set</h1>
+    <script>
+        class User{
+            constructor(name){
+                this._name = name
+            }
+
+            get name(){
+                return this._name
+            }
+
+            set name(newName){
+                if(newName.length < 2){
+                    console.log("이름은 두 글자 이상이어야 합니다.")
+                }
+                else{
+                    this._name = newName
+                }
+            }
+        }
+
+        const user = new User("김사과")
+        console.log(user)
+        user.name = "반"
+        user.name = "반하나"
+        console.log(user.name)
     </script>
 </body>
 </html>
