@@ -34,6 +34,12 @@
             - get과 set은 같은 이름을 공유해야 함
             - 내부에서 값을 저장할 땐 보통 _name 처럼 언더스코어를 붙여서 구분
             - get만 정의하면 읽기 전용 속성이 됨
+
+            private 필드
+            - 클래스 내부에서만 접근 가능한 비공개 속성
+            - #을 붙이면 반드시 동일한 클래스 안에서만 접근 가능
+
+
         */
     </script>
 </head>
@@ -116,8 +122,12 @@
     <h1>get / set</h1>
     <script>
         class User{
-            constructor(name){
+
+            #password = ""
+            
+            constructor(name, password){
                 this._name = name
+                this.#password = password
             }
 
             get name(){
@@ -132,13 +142,23 @@
                     this._name = newName
                 }
             }
+
+            checkPassword(input){
+                return this.#password === input
+            }
         }
 
-        const user = new User("김사과")
+        const user = new User("김사과", "1111")
         console.log(user)
         user.name = "반"
         user.name = "반하나"
         console.log(user.name)
+        console.log(user.checkPassword("1111"))
+        console.log(user.checkPassword("1234"))
+
+        // console.log(user.#password)
+
+        
     </script>
 </body>
 </html>
