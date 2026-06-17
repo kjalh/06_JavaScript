@@ -6,11 +6,106 @@
     <title>클래스</title>
     <script>
         /*
-            
+            class 클래스 명{
+                constructor(매개변수1, 매개변수2 ...){
+                    속성 정의
+            }
+
+                메서드명(매개변수1, 매개변수2, ...){
+                    객체가 할 수 있느 동작 정의
+                }
+            }
+
+
+            클래스 상속
+            - 다른 클래스의 속성과메서드를 물려받을 수 있음
+                class 클래스명 extends 부모 클래스명{
+
+                }
+
+            정적 메서드
+            - 클래스 이름으로 직접 호출하는 메서드
+
+            클래스 필드
+            - constructor 없이 속성을 바로 정의 가능
+            - 클래스 레벨 속성, 비공개 속성 정의에 유리함
+
+            get/set
         */
     </script>
 </head>
 <body>
+    <h1>클래스</h1>
+    <script>
+        class Animal{
+            constructor(type){
+                this.type = type
+            }
+            bark(){
+                console.log(`${this.type} 멍멍!`)
+            }
+            speak(){
+                console.log("동물 소리를 냅니다.")
+            }
+        }
+        const dog = new Animal("강아지")
+        console.log(dog.type)
+        dog.bark()
+        
+
+        class Dog extends Animal{
+            constructor(type, color){
+                super(type) // animal의 constructor를 호출
+                this.color = color
+            }
+            speak(){
+                console.log("멍멍!")
+            }
+
+            showInfo(){
+                console.log(`${this.type}는 ${this.color}입니다.`)
+            }
+        }
+
+        const rucy = new Dog("강아지", "흰색")  // 2) 여기에 입력해야 아래 undefinded가 안 나옴
+        rucy.speak()
+        rucy.bark()  // 1) undefined 멍멍! <- undefined가 나오는 이유는 생성자가 받은 게 없음
+        rucy.showInfo()
+    </script>
+
+    <hr>
+
+    <h1>정적 메서드</h1>
+    <script>
+        class MathTool{
+            static add(a, b){
+                return a + b
+            }
+        }
+        console.log(MathTool.add(3, 4))
+    </script>
     
+    <hr>
+
+    <h1>클래스 필드</h1>
+
+    <script>
+        class Product{
+            name = "상품명 없음"
+            price = 0
+            
+            showInfo(){
+                console.log(`${this.name}의 가격은 ${this.price}원입니다.`)
+            }
+        }
+
+
+
+
+
+        
+        p = new Product
+        p.showInfo()
+    </script>
 </body>
 </html>
