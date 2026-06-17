@@ -157,8 +157,61 @@
         console.log(user.checkPassword("1234"))
 
         // console.log(user.#password)
+    </script>
 
-        
+    <hr>
+    <h1>Account 클래스</h1>
+    <script>
+        class Account{
+            static accountCount = 0
+
+            #balance = 0
+
+            constructor(owner) {
+                this.owner = owner
+                Account.accountCount++
+            }
+            get balance(){
+                return this.#balance
+            }
+            set balance(value){
+                console.log("직접 잔액을 설정할 수 없습니다.")
+            }
+
+            deposit(amount){
+                if(amount>0){
+                    this.#balance += amount
+                    console.log(`${this.owner}님, ${amount}원 입급되었습니다.`)
+                }
+            }
+            
+            withdraw(amount){
+                if(amount<=this.#balance){
+                    this.#balance -= amount
+                    console.log(`${this.owner}님, ${amount}원 출급되었습니다.`)
+                }
+                else{
+                    console.log("잔액이 부족합니다.")
+                }
+            }
+            static getAcountCount(){
+
+                return `총 계좌 수: ${Account.accountCount}`
+            }
+        }
+        const user1 = new Account("김사과")
+        user1.deposit(1000)
+        console.log(user1.balance)
+
+        user1.balance = 5000
+        console.log(user1.balance)
+
+        user1.withdraw(300)
+
+        const user2 = new Account("반하나")
+        user2.deposit(6000)
+
+        console.log(Account.getAcountCount())
     </script>
 </body>
 </html>
