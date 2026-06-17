@@ -216,6 +216,26 @@
         const new_apple = {...apple, job: '프로그래머'}
         console.log(new_apple)
         display(new_apple)
+
+        // new_apple에 pet 속성이 없으면 pet='루시'를 기본값으로 사용
+        const {pet = '루시'} = new_apple
+        // new_apple.job 속성 값을 변수 hobby에 저장
+        // 원래 이름은 job, 내가 사용하고 싶은 이름은 hobby
+        const{job: hobby} = new_apple
+        console.log(new_apple)
+
+        const component = {
+            name: "Button",
+            styles: {
+                size: 20,
+                color: 'black'
+            }
+        }
+        function changeColor({styles: {color}}){
+            console.log(color)
+        }
+
+        changeColor(component)
     </script>
 </body>
 </html>
