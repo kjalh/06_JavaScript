@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표 함수와 콜백 함수</title>
+    <script>
+        /*
+            자바스크립트에서 this가 바뀌는 문제
+            - this가 선언 시점이 아니라 "호출되는 방식"에 따라 결정
+            - 같은 함수라도 어떻게 호출하는냐에 따라 this가 전혀 다른 대상을 가리킬 수 있음
+
+            화살표 함수
+            - function 키워드 대신 => 기호를 사용하여 함수를 더 간결하게 작성하는 방법
+            - ES6부터 도입된 문법으로 코드를 짧게 만들고, this 바인딩 문제를 해결
+                const func1 = () => { console.log("실행") }
+                const func2 = (a, b) => {return a + b}
+                const func3 = x => { return x * x }
+                const func4 = (a, b) => a + b
+                const func5 = (a,b ) => ({a, b})
+
+        */
+    </script>
+</head>
+<body>
+    <script>
+        // 브라우저 환경: this === window, 일반 함수 호출은 전역 객체를 가리킴
+        function show(){
+            console.log(this)
+        }
+        show()
+
+        // this === obj, 점 앞의 객체가 this가 됨
+        const obj1 = {
+            name: "김사과",
+            show() {
+                console.log(this.name)
+            }
+        }
+        obj1.show()
+
+        // 콜백함수를 호출하면 this가 바뀌는 문제가 발생
+        // setTimeout안에 함수는 일반 함수 호출 -> this === window
+        const obj2 = {
+            name: "김사과",
+            show(){
+                setTimeout(function(){
+                    console.log(this.name)
+                }, 1000)
+            }
+        }
+        obj2.show()
+
+        const obj3 = {
+            name: "김사과",
+            show(){
+                setTimeout(() => {
+                    console.log(this.name)
+                }, 1000)
+            }
+        }
+        obj3.show()
+    </script>
+    
+</body>
+</html>
