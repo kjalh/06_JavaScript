@@ -1,3 +1,21 @@
+window.onload = function(){
+    const ssn1 = document.getElementById("ssn1")
+    ssn1.addEventListener("keyup", () => {
+        if(ssn1.value.length>=6){
+            document.getElementById("ssn2").focus()
+        }
+    })
+
+    const ssn = document.querySelectorAll(".ssn")
+    ssn.forEach((s) => {
+        console.log(s)
+        s.addEventListener("input", () => {
+            document.getElementById("ssncheck ").value = "n"
+        })
+    })
+
+}
+
 function sendit() {
     const userid = document.getElementById("userid")
     const userpw = document.getElementById("userpw")
@@ -5,6 +23,7 @@ function sendit() {
     const name = document.getElementById("name")
     const hp = document.getElementById("hp")
     const email = document.getElementById("email")
+    const ssncheck = document.getElementById("ssncheck")
 
 
     const expIdText = /^[A-Za-z0-9]{4,20}$/
@@ -61,41 +80,68 @@ function sendit() {
         return false
     }
 
+    if(ssncheck.value == "n"){
+        alert("주민번호 검증버튼을 눌러주세요")
+        return false
+    }
 
 }
+
+// function checkSsn(){
+//     const ssn1 = document.getElementById("ssn1")
+//     const ssn2 = document.getElementById("ssn2")
+//     const ssn = ssn1.value + ssn2.value
+//     let sum_ssn = 0
+//     let j = 2
+
+//     for(let i=0; i<ssn.length-1;i++){
+//         sum_ssn += j*parseInt(ssn[i])
+//         j++
+//         if(j>9){
+//             j = 2
+//         }
+//     }
+
+//     const div_ssn = sum_ssn%11
+
+//     if (div_ssn>=10){
+//         if(div_ssn%10!=parseInt(ssn[ssn.length-1])){
+//             alert("주민번호 안 맞음")
+//             ssn1.focus()
+//             ssn2.focus()
+//             return false
+//         }          
+//     }
+//     else if(div_ssn<10){
+//         if((11-div_ssn)!=parseInt(ssn[ssn.length-1]) ){
+//             alert("주민번호 안 맞음")
+//             ssn1.focus()
+//             ssn2.focus()
+//             return false
+//         }           
+//     }
+//     alert("주민번호 맞음")
+// }
 
 function checkSsn(){
     const ssn1 = document.getElementById("ssn1")
     const ssn2 = document.getElementById("ssn2")
     const ssn = ssn1.value + ssn2.value
-    let sum_ssn = 0
-    let j = 2
+    let ssncheck = document.getElementById("ssncheck")
 
-    for(let i=0; i<ssn.length-1;i++){
-        sum_ssn += j*parseInt(ssn[i])
-        j++
-        if(j>9){
-            j = 2
-        }
-    }
+    const weights = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5]
+    let result = 0;
 
-    const div_ssn = sum_ssn%11
+    for(let i=0; i<weights.length; i++){
+        result += parseInt(ssn[i] * weights[i])
+    }
+    result = (11 - (result % 11)) % 10
 
-    if (div_ssn>=10){
-        if(div_ssn%10!=parseInt(ssn[ssn.length-1])){
-            alert("주민번호 안 맞음")
-            ssn1.focus()
-            ssn2.focus()
-            return false
-        }          
+    if(result == parseInt(ssn[12])) {
+        alert("유효한 주민등록번호입니다!")
+        ssncheck.value = "y"
     }
-    else if(div_ssn<10){
-        if((11-div_ssn)!=parseInt(ssn[ssn.length-1]) ){
-            alert("주민번호 안 맞음")
-            ssn1.focus()
-            ssn2.focus()
-            return false
-        }           
+    else{
+        alert("유효하지 않은 주민등록번호입니다!")
     }
-    alert("주민번호 맞음")
 }
