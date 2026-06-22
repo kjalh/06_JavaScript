@@ -59,6 +59,10 @@
             const email = "apple@apple.com"
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
             console.log("이메일 검사: ", emailRegex.test(email))
+
+            const phone = "010-1234-5678"
+            const phoneRegex = /^010-\d{3,4}-\d{4}/
+            console.log("폰 번호 검사: ", phoneRegex.test(phone))
         })
 
     </script>
